@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 知识库索引页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f7f2;
+            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+            color: #3b322a;
+            line-height: 1.7;
+            padding: 2rem 1.5rem 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 880px;
+            width: 100%;
+        }
+
+        /* 标题区域 - 更像目录册的题头 */
+        .hero-tome {
+            border-bottom: 2px solid #d6cec3;
+            padding-bottom: 1.2rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .hero-tome h1 {
+            font-size: 2.6rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #2f2822;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-tome .subhead {
+            font-size: 1rem;
+            color: #7c7167;
+            font-style: italic;
+            border-left: 3px solid #c9b8a8;
+            padding-left: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 卡片式区块：目录感 */
+        .section-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2rem 0 2.5rem;
+        }
+
+        .info-card {
+            background: #fffffffa;
+            border: 1px solid #e5ddd2;
+            padding: 1.6rem 2rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+            transition: background 0.2s;
+        }
+
+        .info-card:hover {
+            background: #ffffff;
+        }
+
+        .info-card h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #4b3f35;
+            border-bottom: 1px dashed #ddd3c6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card h2::before {
+            content: "▍";
+            color: #b3a08b;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+
+        .info-card p {
+            margin-bottom: 0.9rem;
+        }
+
+        .info-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 引用块 / 提示框 */
+        .insight-box {
+            background: #f2ede6;
+            border-left: 6px solid #c6b5a4;
+            padding: 1.2rem 1.8rem;
+            margin: 2rem 0 2.2rem;
+            font-size: 0.98rem;
+            color: #3e352e;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .insight-box strong {
+            font-weight: 600;
+            color: #2f2822;
+        }
+
+        .insight-box a {
+            color: #6f5c4a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: 500;
+        }
+
+        .insight-box a:hover {
+            color: #3b2f25;
+        }
+
+        /* 相关信息区 — 类似附录索引 */
+        .related-links {
+            background: #f7f3ed;
+            border: 1px solid #e2d9cf;
+            padding: 1.6rem 2rem;
+            margin-top: 2rem;
+        }
+
+        .related-links h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #4b3f35;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        .related-links ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.8rem;
+        }
+
+        .related-links li {
+            font-size: 0.95rem;
+            color: #5f5244;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .related-links li::before {
+            content: "·";
+            color: #b3a08b;
+            margin-right: 6px;
+            font-weight: 700;
+        }
+
+        .related-links a {
+            color: #6f5c4a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .related-links a:hover {
+            color: #3b2f25;
+        }
+
+        /* 句内链接 — 唯一可见文本「爱游戏」 */
+        .inline-game-link {
+            color: #6f5c4a;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            font-weight: inherit;
+        }
+
+        .inline-game-link:hover {
+            color: #3b2f25;
+        }
+
+        /* 小字 & 脚注节奏 */
+        .footnote-meta {
+            margin-top: 2.8rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e1d7cc;
+            font-size: 0.85rem;
+            color: #948a7e;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 0.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.2rem 1rem 3rem;
+            }
+
+            .hero-tome h1 {
+                font-size: 1.9rem;
+            }
+
+            .info-card {
+                padding: 1.2rem 1.2rem;
+            }
+
+            .related-links ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .insight-box {
+                padding: 1rem 1.2rem;
+            }
+
+            .footnote-meta {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 标题区 目录式题头 -->
+    <div class="hero-tome">
+        <h1>爱游戏 · 知识库索引</h1>
+        <div class="subhead">快速辨识网站用途 · 从这一页开始</div>
+    </div>
+
+    <!-- 说明区：用户第一眼需要知道的信息 -->
+    <div class="section-grid">
+        <div class="info-card">
+            <h2>网站定位说明</h2>
+            <p>当你初次接触一个平台，最直接的需求是弄清楚“这个网站做什么”。<strong>爱游戏</strong> 所指向的站点，是一个围绕游戏信息、资源与互动内容聚合的线上空间。它并不等同于某个单一游戏，而是提供一种浏览与发现的入口。</p>
+            <p>本索引页旨在帮助你快速建立认知框架，你可以将其视为一份“使用前导览”。若想直接进入站点浏览内容，请记住这个指向：<a href="https://app-cn-i-game.com.cn" class="inline-game-link">爱游戏</a>。链接文本本身即代表站点名称。</p>
+        </div>
+
+        <div class="info-card">
+            <h2>内容生态速览</h2>
+            <p>根据公开信息与平台呈现逻辑，该网站主要涵盖以下几类素材：游戏资讯、玩法介绍、社区讨论摘录以及部分工具类页面。所有内容均以中文呈现，面向对游戏内容有常规需求的访问者。</p>
+            <p>不同于社交媒体的碎片化，这里的结构更接近“分类书架”——你可能会找到攻略片段、版本更新说明或是玩家心得整理。建议先浏览分类导航，再深入具体板块。</p>
+        </div>
+    </div>
+
+    <!-- 提示框 强调识别要点 -->
+    <div class="insight-box">
+        <strong>识别提示：</strong> 如果你是通过搜索或推荐链接到达这里，请留意浏览器的地址栏域名是否为 <code>app-cn-i-game.com.cn</code>。<br>
+        确认无误后，可直接通过页面内的 <a href="https://app-cn-i-game.com.cn">爱游戏</a> 进入主站。建议将该页面加入书签，方便后续回访。
+    </div>
+
+    <!-- 特点 / 场景 合并为一个卡片 -->
+    <div class="info-card" style="margin-bottom: 0.5rem;">
+        <h2>适用场景举例</h2>
+        <p>· 你想查询某款游戏的基础信息，但不想被广告或弹窗干扰——该站点的页面布局偏向传统列表式，信息密度适中。</p>
+        <p>· 你希望找到游戏相关的背景资料或版本变迁记录——部分板块以时间线或分类标签组织，适合系统性浏览。</p>
+        <p>· 你只是需要一个稳定、轻量的游戏内容入口，而不必登录多个社交账号——网站本身不强制注册即可阅读大部分内容。</p>
+    </div>
+
+    <!-- FAQ 摘要区 以问答卡片形式呈现 -->
+    <div class="info-card" style="margin-top: 1.2rem;">
+        <h2>FAQ 摘要 · 三个常见问题</h2>
+        <p><strong>问：</strong> 这个网站需要付费才能使用吗？<br>
+        <strong>答：</strong> 就目前公开结构来看，绝大多数内容板块免费开放，无强制付费墙。部分互动功能或特定资源可能设有门槛，以页面实际提示为准。</p>
+        <p><strong>问：</strong> 我如何确认看到的内容是官方发布的？<br>
+        <strong>答：</strong> 站内内容来源多样，建议结合文章标注、发布时间或引用来源自行判断。本索引页仅提供入口说明，不代辩内容权责。</p>
+        <p><strong>问：</strong> 手机浏览器上显示正常吗？<br>
+        <strong>答：</strong> 根据页面自适应情况，移动端排版基本可读，部分复杂表格或图片建议横屏查看。如遇显示异常，可尝试刷新或更换浏览器。</p>
+    </div>
+
+    <!-- 相关信息区 扩展索引 -->
+    <div class="related-links">
+        <h3>相关信息 · 进一步了解</h3>
+        <ul>
+            <li><a href="https://app-cn-i-game.com.cn">爱游戏</a> — 主站首页</li>
+            <li>站内搜索（建议进入站点后使用）</li>
+            <li>内容分类索引（位于主站导航栏）</li>
+            <li>关于该域名的备案与主体信息</li>
+        </ul>
+        <p style="margin-top: 0.8rem; font-size: 0.9rem; color: #7c7167;">以上链接与条目均以站内实际情况为准，本页仅做指引。</p>
+    </div>
+
+    <!-- 脚注 保持克制 -->
+    <div class="footnote-meta">
+        <span>知识库索引页 · 仅供快速识别</span>
+        <span>最后更新 · 2025</span>
+    </div>
+
+</div>
+</body>
+</html>
