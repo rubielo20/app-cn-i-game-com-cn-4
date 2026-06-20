@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bet365 资料索引与信息整理页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f9f6f0;
+            font-family: 'Segoe UI', 'Noto Sans SC', Roboto, system-ui, sans-serif;
+            color: #2e2b27;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+
+        .page {
+            max-width: 880px;
+            margin: 0 auto;
+            background: #fffcf8;
+            border-radius: 28px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+            padding: 2.5rem 2rem;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem 0.5rem;
+            }
+            .page {
+                padding: 1.5rem 1rem;
+                border-radius: 20px;
+            }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 1.8rem 0 2.5rem 0;
+            border-bottom: 1px solid #e8e1d6;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1f1b17;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #6b6259;
+            max-width: 600px;
+            margin: 0.2rem auto 1.2rem;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: #eae3d8;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            color: #4a4139;
+        }
+
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: #2b2520;
+            margin: 2.2rem 0 0.8rem 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 2px solid #dfd7ca;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 1.5rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 1.2rem 0;
+        }
+
+        @media (max-width: 540px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: #f6f1ea;
+            border-radius: 18px;
+            padding: 1.2rem 1.2rem 1.2rem 1.5rem;
+            border-left: 4px solid #bfaf9c;
+        }
+
+        .card p {
+            margin-bottom: 0.3rem;
+        }
+
+        .card strong {
+            color: #3d322b;
+            display: block;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-block {
+            background: #f2ede5;
+            border-radius: 16px;
+            padding: 1.4rem 1.6rem;
+            margin: 1.5rem 0;
+            border-left: 5px solid #b09b86;
+        }
+
+        .info-block p {
+            margin: 0.3rem 0;
+        }
+
+        .note-box {
+            background: #eae2d7;
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            margin: 1.2rem 0;
+            font-size: 0.95rem;
+            border: 1px solid #d6cdbe;
+        }
+
+        .note-box strong {
+            color: #3f332b;
+        }
+
+        .faq-item {
+            margin: 0.9rem 0;
+            padding: 0.6rem 0 0.6rem 1rem;
+            border-left: 3px solid #cbbcad;
+        }
+
+        .faq-item .q {
+            font-weight: 600;
+            color: #2f2822;
+        }
+
+        .faq-item .a {
+            margin-top: 0.2rem;
+            color: #4e453d;
+        }
+
+        .footer-links {
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e0d8cc;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+            font-size: 0.9rem;
+            color: #6b6259;
+        }
+
+        .footer-links a {
+            color: #3f332b;
+            text-decoration: none;
+            border-bottom: 1px dotted #b6a99b;
+        }
+
+        .footer-links a:hover {
+            border-bottom: 1px solid #7b6a5a;
+            color: #1f1b17;
+        }
+
+        .inline-link {
+            color: #3d322b;
+            text-decoration: none;
+            border-bottom: 1px solid #bfaf9c;
+            font-weight: 500;
+        }
+
+        .inline-link:hover {
+            border-bottom: 1px solid #7b6a5a;
+            background: #ede5db;
+        }
+
+        .small-meta {
+            color: #7e7369;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+        }
+
+        .dot-list {
+            list-style: none;
+            padding: 0.3rem 0 0.3rem 0.3rem;
+        }
+
+        .dot-list li {
+            padding: 0.2rem 0 0.2rem 1.3rem;
+            position: relative;
+        }
+
+        .dot-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0.2rem;
+            color: #9b897a;
+            font-weight: bold;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2d9cd;
+            margin: 1.2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- hero 区 -->
+        <div class="hero">
+            <h1>bet365 · 资料整理与信息索引</h1>
+            <div class="sub">一份围绕 bet365 平台功能、使用场景及常见疑问的说明汇总</div>
+            <span class="tagline">基于公开信息整理 · 仅供索引参考</span>
+        </div>
+
+        <!-- 介绍 / 概述 -->
+        <h2 class="section-title">关于本页</h2>
+        <p>这里的内容以 <strong>bet365</strong> 为索引对象，从资料整理的角度出发，汇集了该平台在功能模块、界面逻辑以及用户常见问题等方面的简要梳理。页面不提供操作引导或推广，仅作为信息说明使用。如果你希望直接了解 <a href="https://cn-ssl-bet365.com" class="inline-link">bet365</a> 的更多细节，可以访问对应的信息页面。</p>
+
+        <!-- 优势区（用卡片列出） -->
+        <h2 class="section-title">功能与特点速览</h2>
+        <div class="card-grid">
+            <div class="card">
+                <strong>多终端适配</strong>
+                <p>覆盖桌面浏览器与移动端，页面布局针对不同屏幕尺寸进行了基础调整，保持信息层级清晰。</p>
+            </div>
+            <div class="card">
+                <strong>资料结构索引</strong>
+                <p>按模块划分常见内容板块，包括账户相关、赛事浏览、资金流转等，便于快速定位。</p>
+            </div>
+            <div class="card">
+                <strong>语言与界面</strong>
+                <p>提供中文界面选项，菜单与提示信息符合本地化习惯，减少理解门槛。</p>
+            </div>
+            <div class="card">
+                <strong>实时数据呈现</strong>
+                <p>赛事数据、赔率变动等信息以结构化方式展示，可辅助用户进行信息判断。</p>
+            </div>
+        </div>
+
+        <!-- 说明区 (引用块风格) -->
+        <div class="info-block">
+            <p><strong>说明：</strong> 本页面所提及的 bet365 相关内容，均基于平台公开的功能描述与常规操作逻辑整理。不同地区或版本可能存在界面与规则差异，请以实际页面展示为准。bet365 平台本身不提供任何投资建议或收益承诺，用户在使用前应自行了解相关条款。</p>
+        </div>
+
+        <!-- 场景 / 使用视角 (用列表和提示框) -->
+        <h2 class="section-title">常见使用场景</h2>
+        <ul class="dot-list">
+            <li><strong>赛事浏览与信息查阅：</strong> 用户可以通过 bet365 查看各类体育赛事的实时数据、历史记录以及赔率变化曲线，辅助形成个人判断。</li>
+            <li><strong>账户管理与资金操作：</strong> 平台提供多种存款与提现方式，并设有对应的记录查询入口，方便用户核对流水。</li>
+            <li><strong>多语言环境切换：</strong> 在界面设置中可选择偏好语言，对于中文用户来说，可以更顺畅地阅读规则与提示信息。</li>
+            <li><strong>合规与限制了解：</strong> 不同地区对在线娱乐平台有各自的监管要求，bet365 在注册及使用过程中会提示相应条款，用户应仔细阅读。</li>
+        </ul>
+
+        <div class="note-box">
+            <strong>提示：</strong> 如果你需要查询 bet365 的客服支持、规则说明或账户安全设置，建议直接登录后查阅帮助中心。第三方资料整理可能存在滞后，最准确的信息始终以平台官方页面为准。<br>
+            <span class="small-meta">— 信息索引日期：2025年3月</span>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <h2 class="section-title">FAQ 摘要</h2>
+        <div class="faq-item">
+            <div class="q">Q: 如何确认 bet365 当前的支持语言？</div>
+            <div class="a">登录后进入设置或页面底部通常可以找到语言切换选项，中文（简体）在多数地区可用。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q: 资金操作通常需要多久到账？</div>
+            <div class="a">不同支付方式处理时间不同，电子钱包通常较快，银行转账可能需 1–3 个工作日。具体以 bet365 资金页面说明为准。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q: 是否可以在移动设备上使用全部功能？</div>
+            <div class="a">bet365 移动版网页涵盖了大部分核心功能。部分高级数据视图在桌面端可能更完整，但日常浏览赛事与操作基本不受影响。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q: 注册时需要提供哪些基本信息？</div>
+            <div class="a">通常需要填写邮箱、用户名、密码、居住国家/地区及出生日期等。具体字段以注册页面实际显示为准。</div>
+        </div>
+
+        <hr>
+
+        <!-- 底部链接区 -->
+        <div class="footer-links">
+            <span>资料索引：</span>
+            <a href="https://cn-ssl-bet365.com">bet365</a>
+            <span>·</span>
+            <span>内容仅供信息参考</span>
+            <span>·</span>
+            <span>不构成任何建议</span>
+        </div>
+        <div style="text-align: center; margin-top: 0.8rem; font-size: 0.8rem; color: #a29587;">
+            本页面为静态说明页 · 不收集任何用户数据
+        </div>
+    </div>
+</body>
+</html>
