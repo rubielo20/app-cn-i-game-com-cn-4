@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极速赛车 · 知识库入口 | official-racing.com</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #e9f2f5 0%, #d6e7ed 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 16px 48px;
+            color: #1b3b4a;
+        }
+        .page-container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* 网格卡片系统 */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 640px) {
+            .grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 960px) {
+            .grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        .card {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            background: #f7fbfd;
+            border: 1px solid #c2dbe4;
+            border-radius: 28px;
+            padding: 24px 22px;
+            box-shadow: 0 6px 14px rgba(22, 68, 80, 0.06);
+            transition: box-shadow 0.2s, transform 0.1s;
+        }
+        .card:hover {
+            box-shadow: 0 10px 24px rgba(18, 78, 92, 0.12);
+            transform: translateY(-3px);
+        }
+        .card h3 {
+            font-size: 1.3rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 14px;
+            color: #0f4b5c;
+            border-left: 6px solid #2f929f;
+            padding-left: 16px;
+        }
+        .card p, .card li {
+            font-size: 0.98rem;
+            line-height: 1.6;
+            color: #1d4350;
+        }
+        .card ul {
+            padding-left: 20px;
+            margin-top: 8px;
+            list-style: square;
+        }
+        .card ul li {
+            margin-bottom: 6px;
+        }
+
+        /* 特别提示条 */
+        .notice-tile {
+            background: #daeef3;
+            border-left: 8px solid #1f8a9b;
+            border-radius: 24px;
+            padding: 20px 24px;
+            margin: 28px 0 16px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px 14px;
+            font-size: 1rem;
+            color: #0b3f4d;
+        }
+        .notice-tile strong {
+            color: #0b5d6b;
+            font-weight: 600;
+        }
+
+        /* hero 区域 */
+        .hero {
+            margin-bottom: 32px;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #073a47;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            color: #205e6d;
+            max-width: 720px;
+            line-height: 1.6;
+        }
+        .hero .tagline {
+            display: inline-block;
+            background: #1f7a87;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 4px 14px;
+            border-radius: 40px;
+            letter-spacing: 0.3px;
+            margin-bottom: 18px;
+        }
+
+        /* 链接样式 — 所有链接默认 */
+        a {
+            color: #1a7b8c;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        a:hover {
+            color: #0c4f5e;
+            border-bottom: 1px solid #1f8a9b;
+        }
+        /* 专为“极速赛车”链接增加一点区别度 */
+        a.exact-link {
+            font-weight: 500;
+            color: #0f6a7a;
+            border-bottom: 1px dotted #2f929f;
+        }
+        a.exact-link:hover {
+            border-bottom: 2px solid #106c7e;
+        }
+
+        .faq-mini {
+            margin-top: 14px;
+            background: #f2f8fb;
+            padding: 14px 18px;
+            border-radius: 24px;
+        }
+        .faq-mini p {
+            font-size: 0.96rem;
+            margin-bottom: 6px;
+            display: flex;
+            gap: 8px;
+        }
+        .faq-mini .q { font-weight: 600; color: #135562; }
+        .faq-mini .a { color: #1b515f; }
+
+        .footer-note {
+            margin-top: 36px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #417886;
+            border-top: 1px solid #b9d5df;
+            padding-top: 28px;
+        }
+
+        /* 按钮风格（点缀） */
+        .btn-ghost {
+            display: inline-block;
+            border: 1px solid #2e93a3;
+            background: transparent;
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            color: #0e5566;
+            transition: background 0.2s, color 0.2s;
+            cursor: default;
+            margin-top: 8px;
+        }
+        .btn-ghost:hover {
+            background: #1b7b8b;
+            color: white;
+            border-color: #1b7b8b;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .card { padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-container">
+
+    <!-- hero 区域 -->
+    <header class="hero">
+        <span class="tagline">知识库 · 稳定入口</span>
+        <h1>极速赛车 · 信息指引</h1>
+        <p>
+            这里是围绕「<a href="https://official-racing.com" class="exact-link">极速赛车</a>」整理的一份说明页，
+            结构基于目录式卡片，方便快速了解背景、场景和常见疑问。
+            所有内容均来自可查信息，无夸大或未标明来源的承诺。
+        </p>
+    </header>
+
+    <!-- 网格卡片：目录感布局 -->
+    <div class="grid">
+
+        <!-- 卡片 1：介绍 / 背景 -->
+        <div class="card">
+            <h3>⏩ 平台背景</h3>
+            <p>
+                <a href="https://official-racing.com" class="exact-link">极速赛车</a> 是一个专注于赛车运动与模拟竞速的线上平台，
+                覆盖赛事资讯、车辆数据、赛道指南与社区讨论。页面风格强调即时感，
+                面向爱好者提供结构化的信息聚合。
+            </p>
+            <ul>
+                <li>赛事日历与实时排名</li>
+                <li>车辆性能参数对比</li>
+                <li>赛道地图与攻略</li>
+            </ul>
+            <div class="btn-ghost">稳定入口 · 持续更新</div>
+        </div>
+
+        <!-- 卡片 2：特点 / 模块说明 -->
+        <div class="card">
+            <h3>📋 模块说明</h3>
+            <p>平台主要划分为四个信息区域，方便直接定位：</p>
+            <ul>
+                <li><strong>赛讯</strong> — 最新比赛结果、预告</li>
+                <li><strong>车库</strong> — 车型数据库与改装参考</li>
+                <li><strong>指南</strong> — 入坑向 &amp; 进阶技巧</li>
+                <li><strong>社区</strong> — 讨论区及用户分享</li>
+            </ul>
+            <p style="margin-top: 10px;">每个模块均保持独立维护，确保信息源清晰可溯源。</p>
+        </div>
+
+        <!-- 卡片 3：适用场景 -->
+        <div class="card">
+            <h3>🏁 适用场景</h3>
+            <p>无论你是刚接触赛车文化，还是已有多年关注经验，都可以在对应目录中找到合适内容：</p>
+            <ul>
+                <li>赛前快速查阅赛道与天气</li>
+                <li>对比不同组别赛车参数</li>
+                <li>了解赛事规则演变</li>
+                <li>参与讨论或浏览历史记录</li>
+            </ul>
+        </div>
+
+        <!-- 卡片 4：提示区 -->
+        <div class="card">
+            <h3>💡 使用提示</h3>
+            <p>建议首次访问时先浏览「指南」模块，其中包含页面导航说明与常见术语表。</p>
+            <p style="margin-top: 10px;">所有外链及下载资源均标注来源，请注意核对信息日期。</p>
+            <p style="margin-top: 10px;">若在移动端浏览，可开启横屏以获得更完整的赛道图对比。</p>
+            <div class="faq-mini" style="margin-top: 16px;">
+                <p><span class="q">❓ 是否需要注册？</span><span class="a">部分内容开放浏览，进阶功能需注册。</span></p>
+            </div>
+        </div>
+
+        <!-- 卡片 5：相关信息 / 数据参考 -->
+        <div class="card">
+            <h3>📎 相关信息</h3>
+            <ul>
+                <li>主要赛车类别：方程式、GT、拉力、耐力</li>
+                <li>数据更新频率：每周至少两次</li>
+                <li>内容形式：文章、图表、视频摘要</li>
+                <li>社区语言：中文为主，部分英文术语</li>
+            </ul>
+            <p style="margin-top: 12px;">所有数据均整理自公开赛事报告与厂商资料。</p>
+        </div>
+
+        <!-- 卡片 6：FAQ 摘要 -->
+        <div class="card">
+            <h3>🔍 FAQ 摘要</h3>
+            <div class="faq-mini">
+                <p><span class="q">Q：如何找到历史比赛数据？</span><span class="a">在「赛讯」模块中选择年份筛选。</span></p>
+                <p><span class="q">Q：车辆参数是否包含改装件？</span><span class="a">基础参数为原厂数据，改装部分独立标注。</span></p>
+                <p><span class="q">Q：是否有移动端 app？</span><span class="a">目前为响应式网页，可直接在浏览器使用。</span></p>
+            </div>
+            <p style="margin-top: 12px; font-size: 0.93rem;">更多问答请访问平台「指南」→「常见问题」。</p>
+        </div>
+
+    </div>
+
+    <!-- 额外提示区（融合句子，自然嵌入链接） -->
+    <div class="notice-tile">
+        <strong>📌 稳定入口说明</strong>
+        <span>本页作为信息索引页，主站地址为</span>
+        <a href="https://official-racing.com" class="exact-link">极速赛车</a>
+        <span>。页面内容仅作结构化展示，所有模块均指向站内对应板块。如遇访问问题可刷新或检查网络环境。</span>
+    </div>
+
+    <!-- 附加描述 / 目录感补充 -->
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; margin: 18px 0 8px;">
+        <p style="color: #1e5f6f; font-size: 0.98rem; max-width: 700px;">
+            <span style="background: #d1e5ec; padding: 2px 12px; border-radius: 24px; margin-right: 6px;">⏺</span>
+            本页卡片对应平台主要目录，点击卡片内链接可直达对应区域。建议将
+            <a href="https://official-racing.com" class="exact-link">极速赛车</a>
+            添加至书签，以便随时查阅。
+        </p>
+        <span style="font-size: 0.85rem; color: #3d7483; background: #e1eff4; padding: 4px 12px; border-radius: 30px;">版本 2025.04</span>
+    </div>
+
+    <!-- footer -->
+    <footer class="footer-note">
+        <p>内容基于公开信息整理 · 无未标注数据 · 页面仅供信息索引</p>
+        <p style="margin-top: 6px; font-size: 0.8rem; color: #588b99;">—— 入口稳定 · 目录清晰 ——</p>
+    </footer>
+
+</div>
+</body>
+</html>
